@@ -33,6 +33,7 @@
 #include "w_modepanel.h"
 #include "w_mousefun.h"
 #include "w_msgpanel.h"
+#include "w_indpanel.h"
 #include "w_setup.h"
 #include "w_util.h"
 
@@ -354,6 +355,10 @@ copy_arc(F_arc *a)
     /* copy static items first */
     *arc = *a;
     arc->next = NULL;
+    arc -> pen_color = YELLOW;
+    arc -> fill_color = MED_GRAY;
+    arc -> depth = cur_depth;
+    arc -> fill_style = NUMFILLPATS-1;
 
     /* do comments next */
     copy_comments(&a->comments, &arc->comments);
@@ -405,6 +410,10 @@ copy_ellipse(F_ellipse *e)
     /* copy static items first */
     *ellipse = *e;
     ellipse->next = NULL;
+    ellipse -> pen_color = RED;
+    ellipse -> fill_color = CYAN;
+    ellipse -> depth = cur_depth;
+    ellipse -> fill_style = NUMFILLPATS-1;
 
     /* do comments next */
     copy_comments(&e->comments, &ellipse->comments);
@@ -483,6 +492,8 @@ copy_line(F_line *l)
     /* copy static items first */
     *line = *l;
     line->next = NULL;
+    line -> pen_color = GREEN4;
+    line -> depth = 30;
 
     /* do comments next */
     copy_comments(&l->comments, &line->comments);
@@ -572,6 +583,8 @@ copy_spline(F_spline *s)
     /* copy static items first */
     *spline = *s;
     spline->next = NULL;
+    spline -> pen_color = RED;
+    spline -> depth = 30;
 
     /* do comments next */
     copy_comments(&s->comments, &spline->comments);
@@ -653,6 +666,7 @@ copy_text(F_text *t)
     /* copy static items first */
     *text = *t;
     text->next = NULL;
+  
 
     /* do comments next */
     copy_comments(&t->comments, &text->comments);
